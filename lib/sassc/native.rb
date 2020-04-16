@@ -7,11 +7,7 @@ module SassC
     extend FFI::Library
 
     dl_ext = RbConfig::MAKEFILE_CONFIG['DLEXT']
-    begin
-      ffi_lib File.expand_path("libsass.#{dl_ext}", __dir__)
-    rescue LoadError # Some non-rvm environments don't copy a shared object over to lib/sassc
-      ffi_lib File.expand_path("libsass.#{dl_ext}", "#{__dir__}/../../ext")
-    end
+    ffi_lib File.expand_path("libsass.#{dl_ext}", "/usr/local/lib")
 
     require_relative "native/sass_value"
 
